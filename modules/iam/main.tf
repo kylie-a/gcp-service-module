@@ -1,12 +1,3 @@
-variable "project" {}
-
-variable "service_name" {}
-
-variable "roles" {
-  default = []
-  type = "list"
-}
-
 resource "google_service_account" "sre_service_acct" {
   account_id   = "${var.service_name}-svc-acct"
   display_name = "${var.service_name}-svc-acct"
