@@ -29,18 +29,18 @@ module "pubsub_publishes_to" {
   topics = "${var.pubsub.publishes_to}"
 }
 
-module "cloud_sql" {
-  source = "./modules/cloudSQL"
-  service_name = "${var.service_name}"
-  project = "${var.project}"
-  region = "${var.region}"
+# module "cloud_sql" {
+#   source = "./modules/cloudSQL"
+#   service_name = "${var.service_name}"
+#   project = "${var.project}"
+#   region = "${var.region}"
   
-  db_version = "${var.cloud_sql.db_version}"
-  tier = "${var.cloud_sql.tier}"
-  binary_log_enabled = "${var.cloud_sql.binary_log_enabled}"
-  backup_enabled = "${var.cloud_sql.backup_enabled}"
-  start_time = "${var.cloud_sql.start_time}"
-  db_name = "${var.cloud_sql.db_name}"
-  users = "${var.cloud_sql.users}"
-}
+#   db_version = "${var.cloud_sql.db_version}"
+#   tier = "${var.cloud_sql.tier}"
+#   binary_log_enabled = "${var.cloud_sql.binary_log_enabled}"
+#   backup_enabled = "${var.cloud_sql.backup_enabled}"
+#   start_time = "${var.cloud_sql.start_time}"
+#   db_name = "${var.cloud_sql.db_name}"
+#   users = "${var.cloud_sql.users}"
+# }
 
