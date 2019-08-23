@@ -8,7 +8,7 @@ resource "google_sql_database_instance" "master" {
     # Second-generation instance tiers are based on the machine
     # type. See argument reference below.
     tier = "${var.tier}"
-    backup_configuration = {
+    backup_configuration {
       binary_log_enabled = "${var.binary_log_enabled}"
       enabled = "${var.backup_enabled}"
       start_time = "${var.start_time}"
