@@ -4,7 +4,7 @@ resource "google_dns_record_set" "dns_record" {
   type         = "CNAME"
   ttl          = 300
   managed_zone = "${lookup(var.dns[count.index], "managed_zone_name")}"
-  rrdatas      = ["${var.ingress_dns}.${lookup(var.dns[count.index], "managed_zone_dns")}"]
+  rrdatas      = ["${lookup(var.dns[count.index], "name")}.${lookup(var.dns[count.index], "managed_zone_dns")}"]
 }
 
 module "iam" {
@@ -24,7 +24,7 @@ module "pubsub_subscriptions" {
 
 module "pubsub_publishes_to" {
   source = "./modules/pubsub/publisher"
-service_name = "${var.service_name}"
+  service_name = "${var.service_name}"
   project = "${var.project}"
   topics = "${var.pubsub.publishes_to}"
 }

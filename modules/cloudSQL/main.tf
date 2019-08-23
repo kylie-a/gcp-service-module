@@ -1,4 +1,5 @@
 resource "google_sql_database_instance" "master" {
+  count = "${length(var.service_name)}"
   name = "${var.service_name}-db-master"
   database_version = "${var.cloud_sql.db_version}"
   region = "${var.region}"
@@ -16,6 +17,7 @@ resource "google_sql_database_instance" "master" {
 }
 
 resource "google_sql_database" "database" {
+  count = "${length(var.service_name)}"
   name      = "${var.cloud_sql.db_name}"
   instance  = "${google_sql_database_instance.master.name}"
   charset   = "latin1"
