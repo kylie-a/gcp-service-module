@@ -19,7 +19,7 @@ resource "google_sql_database_instance" "master" {
 resource "google_sql_database" "database" {
   count = "${var.enabled}"
   name      = "${var.db_name}"
-  instance  = "${google_sql_database_instance.master.name}"
+  instance  = "${google_sql_database_instance.master[0].name}"
   charset   = "latin1"
   collation = "latin1_swedish_ci"
 }
@@ -27,5 +27,5 @@ resource "google_sql_database" "database" {
 resource "google_sql_user" "users" {
   count    = "${length(var.users)}"
   name     = "${var.users[count.index]}"
-  instance = "${google_sql_database_instance.master.name}"
+  instance = "${google_sql_database_instance.master[0].name}"
 }
