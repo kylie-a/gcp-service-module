@@ -23,19 +23,19 @@ variable "dns" {
 }
 
 variable "datastore" {
-  type = map(string)
+  type    = map(string)
   default = {}
 }
 
 variable "pubsub" {
-  type    = object({
-    subscriptions = list(string)
-    publishes_to = list(string)
+  type = object({
+    subscriptions        = list(string)
+    publishes_to         = list(string)
     ack_deadline_timeout = number
   })
   default = {
-    subscriptions = []
-    publishes_to = []
+    subscriptions        = []
+    publishes_to         = []
     ack_deadline_timeout = 20
   }
 }
