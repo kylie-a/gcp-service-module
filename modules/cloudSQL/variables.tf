@@ -1,3 +1,7 @@
+variable "enabled" {
+  default = false
+}
+
 variable service_name {
   default = "service_name"
 }
