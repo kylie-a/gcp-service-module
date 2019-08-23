@@ -19,7 +19,7 @@ module "pubsub_subscriptions" {
   service_name         = var.service_name
   project              = var.project
   topics               = var.pubsub.subscriptions
-  ack_deadline_timeout = var.pubsub.ack_deadline_timeout[0]
+  ack_deadline_timeout = var.pubsub.ack_deadline_timeout
 }
 
 module "pubsub_publishes_to" {
