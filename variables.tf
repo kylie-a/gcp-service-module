@@ -1,39 +1,40 @@
 # General variables
 
-variable project {
+variable "project" {
   description = "Project ID to use."
   default     = ""
 }
 
-variable service_name {
-
+variable "service_name" {
 }
-variable region {
+
+variable "region" {
   default = "us-central1"
 }
 
 variable "dns" {
   description = "List of DNS records to add for your service."
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "datastore" {
-  type    = "map"
+  type    = map(string)
   default = {}
 }
 
 variable "pubsub" {
-  type = "map"
+  type    = map(string)
   default = {}
 }
 
 variable "cloud_sql" {
-  type = "map"
+  type    = map(string)
   default = {}
 }
 
 variable "iam" {
-  type = "map"
+  type    = map(string)
   default = {}
 }
+

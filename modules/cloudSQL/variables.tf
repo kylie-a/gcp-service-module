@@ -6,7 +6,7 @@ variable service_name {
   default = "service_name"
 }
 variable project {
-  default = "project"
+  default = ""
 }
 variable region {
   default = "us-central1"
@@ -24,10 +24,12 @@ variable backup_enabled {
   default = false
 }
 variable start_time {
+  default = "03:00"
 }
 variable db_name {
   default = "db_name"
 }
 variable users {
+  type = "list"
   default = []
 }

@@ -1,32 +1,32 @@
 resource "google_dns_record_set" "dns_record" {
-  count        = "${length(var.dns)}"
-  name         = "${lookup(var.dns[count.index], "name")}.${lookup(var.dns[count.index], "managed_zone_dns")}"
+  count        = length(var.dns)
+  name         = "${var.dns[count.index]["name"]}.${var.dns[count.index]["managed_zone_dns"]}"
   type         = "CNAME"
   ttl          = 300
-  managed_zone = "${lookup(var.dns[count.index], "managed_zone_name")}"
-  rrdatas      = ["${lookup(var.dns[count.index], "name")}.${lookup(var.dns[count.index], "managed_zone_dns")}"]
+  managed_zone = var.dns[count.index]["managed_zone_name"]
+  rrdatas      = ["${var.dns[count.index]["name"]}.${var.dns[count.index]["managed_zone_dns"]}"]
 }
 
 module "iam" {
-  source = "./modules/iam"
-  project = "${var.project}"
-  service_name = "${var.service_name}"
-  roles = "${var.iam.roles}"
+  source       = "./modules/iam"
+  project      = var.project
+  service_name = var.service_name
+  roles        = var.iam.roles
 }
 
 module "pubsub_subscriptions" {
-  source       = "./modules/pubsub/subscriber"
-  service_name = "${var.service_name}"
-  project = "${var.project}"
-  topics = "${var.pubsub.subscriptions}"
-  ack_deadline_timeout = "${var.pubsub.ack_deadline_timeout[0]}"
+  source               = "./modules/pubsub/subscriber"
+  service_name         = var.service_name
+  project              = var.project
+  topics               = var.pubsub.subscriptions
+  ack_deadline_timeout = var.pubsub.ack_deadline_timeout[0]
 }
 
 module "pubsub_publishes_to" {
-  source = "./modules/pubsub/publisher"
-  service_name = "${var.service_name}"
-  project = "${var.project}"
-  topics = "${var.pubsub.publishes_to}"
+  source       = "./modules/pubsub/publisher"
+  service_name = var.service_name
+  project      = var.project
+  topics       = var.pubsub.publishes_to
 }
 
 # module "cloud_sql" {
@@ -34,7 +34,6 @@ module "pubsub_publishes_to" {
 #   service_name = "${var.service_name}"
 #   project = "${var.project}"
 #   region = "${var.region}"
-  
 #   db_version = "${var.cloud_sql.db_version}"
 #   tier = "${var.cloud_sql.tier}"
 #   binary_log_enabled = "${var.cloud_sql.binary_log_enabled}"
@@ -43,4 +42,3 @@ module "pubsub_publishes_to" {
 #   db_name = "${var.cloud_sql.db_name}"
 #   users = "${var.cloud_sql.users}"
 # }
-
