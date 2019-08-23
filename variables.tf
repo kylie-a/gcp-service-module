@@ -6,6 +6,7 @@ variable "project" {
 }
 
 variable "service_name" {
+  default = ""
 }
 
 variable "region" {
@@ -13,13 +14,16 @@ variable "region" {
 }
 
 variable "dns" {
-  description = "List of DNS records to add for your service."
-  type        = list(string)
-  default     = []
+  type = list(object({
+    name              = string
+    managed_zone_name = string
+    managed_zone_dns  = string
+  }))
+  default = "[]"
 }
 
 variable "datastore" {
-  type    = map(string)
+  type    = list(string)
   default = {}
 }
 
@@ -34,7 +38,9 @@ variable "cloud_sql" {
 }
 
 variable "iam" {
-  type    = map(string)
+  type = map(object({
+    roles = list(string)
+  }))
   default = {}
 }
 
