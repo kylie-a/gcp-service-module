@@ -4,7 +4,7 @@ resource "google_dns_record_set" "dns_record" {
   type         = "CNAME"
   ttl          = 300
   managed_zone = "${var.dns.*.["managed_zone_name"]}"
-  rrdatas      = ["${var.dns.["name"]}.${var.dns.*.["managed_zone_dns"]}"]
+  rrdatas      = ["${var.dns.["name"]}.${var.dns[count.index]["managed_zone_dns"]}"]
 }
 
 module "iam" {
