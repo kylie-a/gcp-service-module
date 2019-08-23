@@ -23,7 +23,8 @@ variable "dns" {
 }
 
 variable "datastore" {
-  type    = object(string)
+  type = map(object({
+  }))
   default = {}
 }
 
