@@ -26,6 +26,6 @@ resource "google_sql_database" "database" {
 
 resource "google_sql_user" "users" {
   count    = "${length(var.users)}"
-  name     = "${var[count.index]}"
+  name     = "${var.users[count.index]}"
   instance = "${google_sql_database_instance.master.name}"
 }
