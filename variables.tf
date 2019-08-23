@@ -23,14 +23,21 @@ variable "dns" {
 }
 
 variable "datastore" {
-  type = map(object({
-  }))
+  type = map(string)
   default = {}
 }
 
 variable "pubsub" {
-  type    = map(string)
-  default = {}
+  type    = object({
+    subscriptions = list(string)
+    publishes_to = list(string)
+    ack_deadline_timeout = number
+  })
+  default = {
+    subscriptions = []
+    publishes_to = []
+    ack_deadline_timeout = 20
+  }
 }
 
 variable "cloud_sql" {
@@ -39,9 +46,11 @@ variable "cloud_sql" {
 }
 
 variable "iam" {
-  type = map(object({
+  type = object({
     roles = list(string)
-  }))
-  default = {}
+  })
+  default = {
+    roles = []
+  }
 }
 
