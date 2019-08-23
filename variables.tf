@@ -23,7 +23,7 @@ variable "dns" {
 }
 
 variable "datastore" {
-  type    = list(string)
+  type    = object(string)
   default = {}
 }
 

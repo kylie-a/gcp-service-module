@@ -4,5 +4,5 @@ variable "service_name" {}
 
 variable "roles" {
   default = []
-  type = "list(string)"
+  type = list(string)
 }
