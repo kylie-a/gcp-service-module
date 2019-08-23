@@ -19,7 +19,7 @@ variable "dns" {
     managed_zone_name = string
     managed_zone_dns  = string
   }))
-  default = "[]"
+  default = []
 }
 
 variable "datastore" {
